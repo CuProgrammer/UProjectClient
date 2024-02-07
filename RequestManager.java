@@ -63,6 +63,18 @@ public class RequestManager {
             return "Unexpected Error";
     }
     
+    public double extractGiftcard(String key) {
+        connect();
+        tell("ExtractGiftcard", user, key);
+        String response = listen();
+        System.out.println(response);
+        double amount = -1;
+        if (response.split("\t")[0].equals("ExtractGiftcard Successful"))
+            amount = Double.parseDouble(response.split("\t")[1]);
+        disconnect();
+        return amount;
+    }
+    
     public ArrayList<Product> search(String[] queries) {
         ArrayList<Product> results = new ArrayList<>();
         String queryString = array2String(queries);
