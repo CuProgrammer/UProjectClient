@@ -51,6 +51,18 @@ public class RequestManager {
         return true;
     }
     
+    public String generateGiftcard(double value) {
+        connect();
+        tell("GenerateGiftcard", user, value);
+        String response = listen();
+        System.out.println(response);
+        disconnect();
+        if (response.split("\t")[0].equals("GenerateGiftcard Successful"))
+            return response.split("\t")[1];
+        else
+            return "Unexpected Error";
+    }
+    
     public ArrayList<Product> search(String[] queries) {
         ArrayList<Product> results = new ArrayList<>();
         String queryString = array2String(queries);
