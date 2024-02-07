@@ -25,6 +25,10 @@ public class RequestManager {
         this.portNumber = portNumber;
     }
     
+    public ShopUser getUserInfo() {
+        return user;
+    }
+    
     public void downloadProductFile(Product product, String type) {
         connect();
         tell("DownloadProductFile", product.getName(), type);
